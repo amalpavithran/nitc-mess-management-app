@@ -8,6 +8,7 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import SignupScreen from './Signup';
+import extras from './extras';
 
 class Signin extends Component {
   constructor(props) {
@@ -51,9 +52,15 @@ class Signin extends Component {
               </Item>
               <Button style={styles.button}
                 onPress={() => {
-                  this.props.navigation.navigate('Signup')
+                  this.props.navigation.navigate('extras')
                 }}>
                 <Text>Submit</Text>
+              </Button>
+              <Button style={styles.button}
+                onPress={() => {
+                  this.props.navigation.navigate('Signup')
+                }}>
+                <Text>Sign Up</Text>
               </Button>
             </Form>
             <Body />
@@ -70,6 +77,9 @@ const AppNavigator = createStackNavigator({
   },
   Signup: {
     screen: SignupScreen,
+  },
+  extras: {
+    screen: extras
   }
 });
 
