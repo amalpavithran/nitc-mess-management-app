@@ -10,11 +10,15 @@ import { Ionicons } from '@expo/vector-icons';
 import SignupScreen from './Signup';
 import extras from './extras';
 
+var url = "http://nitc-mess.anandu.net"
+
 class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isReady: false,
+      email: null,
+      pass: null
     };
   }
   async componentDidMount() {
@@ -43,16 +47,31 @@ class Signin extends Component {
           <Content style={{ marginTop: -100 }}>
             <Form style={styles.form}>
               <Item floatingLabel>
-                <Label>Username</Label>
-                <Input onChangeText={(text) => { user = text }} />
+                <Label>Email</Label>
+                <Input onChangeText={(text) => { this.state.email = text }} />
               </Item>
               <Item floatingLabel>
                 <Label>Password</Label>
-                <Input secureTextEntry={true} onChangeText={(text) => { pass = text }} />
+                <Input secureTextEntry={true} onChangeText={(text) => { this.state.pass = text }} />
               </Item>
               <Button style={styles.button}
                 onPress={() => {
-                  this.props.navigation.navigate('extras')
+                  this.props.navigation.navigate('extras');
+                  console.log(this.state.email);
+                  console.log(this.state.pass);
+                  fetch(url + '/api/auth/signin', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      'email': this.state.email,
+                      "password": this.state.pass,
+                    })
+                  }).then(data => data.json())
+                    .then((d) => {
+                      console.log(d)
+                    })
                 }}>
                 <Text>Submit</Text>
               </Button>
@@ -85,21 +104,18 @@ const AppNavigator = createStackNavigator({
 
 export default createAppContainer(AppNavigator);
 
-var user
-var pass
 function login() {
-
 }
 const styles = StyleSheet.create({
   form: {
     margin: 10,
     marginBottom: 20,
     alignItems: "center",
-    flexDirection:"column"
+    flexDirection: "column"
   },
   button: {
-    flexGrow:1,
-    marginTop:30,
+    flexGrow: 1,
+    marginTop: 30,
     justifyContent: "center",
     borderRadius: 7
   }
