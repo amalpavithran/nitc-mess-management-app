@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-import { StyleSheet, TextInput, ScrollView } from 'react-native'
-import { AppLoading } from 'expo';
+import React, {Component} from 'react';
+import { View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { StyleSheet, ScrollView, AppRegistry} from 'react-native'
 import { Container, Text, Button, Content, Header, Form, Item, Input, Label, Left, Body, Title, Right, Subtitle, Row } from 'native-base';
 import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
+import SignupScreen from './Signup';
 
 var url = "http://nitc-mess.anandu.net"
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +20,6 @@ export default class App extends Component {
       pass: null
     };
   }
-
   async componentDidMount() {
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
@@ -30,7 +33,6 @@ export default class App extends Component {
     if (!this.state.isReady) {
       return <AppLoading />;
     }
-
     return (
       <ScrollView style={{ flexGrow: 1 }}>
         <Header>
@@ -77,8 +79,19 @@ export default class App extends Component {
         </Container>
       </ScrollView>
     );
+
   }
 }
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: Signin,
+  },
+  Signup: {
+    screen: SignupScreen,
+  }
+});
+
+export default createAppContainer(AppNavigator);
 
 function login() {
 }
