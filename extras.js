@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { Container, Header, Content, List, ListItem, Text, Separator, Right, Card, CardItem, Left, Thumbnail, Body } from 'native-base';
+import { Container, Header, Content, List, ListItem, Text, Separator, Right, Card, CardItem, Left, Thumbnail, Body, Footer, } from 'native-base';
 
 export default class extras extends Component {
   constructor(props) {
@@ -54,7 +54,9 @@ export default class extras extends Component {
             </CardItem>
           </Card>
           {this.extras}
-        </Content>
+        </Content>        
+        <ListItem />
+        <ListItem />
         <Content style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
           <Card>
             <CardItem>
