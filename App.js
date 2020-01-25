@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native'
+import {StyleSheet, TextInput} from 'react-native'
 import { AppLoading } from 'expo';
 import { Container, Text, Button, Content, Header, Form, Item, Input, Label, Left, Body, Title, Right, Subtitle, Row } from 'native-base';
 import * as Font from 'expo-font';
@@ -28,7 +28,7 @@ export default class App extends Component {
     }
 
     return (
-      <Container>
+      <Container style={{flexGrow:1}}>
         <Header>
           <Left />
           <Body>
@@ -36,7 +36,7 @@ export default class App extends Component {
             {/* <Subtitle>Code.init()</Subtitle> */}
           </Body>
         </Header>
-        <Container>
+        <Container style={{justifyContent:"center",alignItems:"center",flexDirection:'row',backgroundColor:'tomato'}}>
           <Content>
             <Form style={styles.form}>
               <Item floatingLabel>
@@ -45,7 +45,7 @@ export default class App extends Component {
               </Item>
               <Item floatingLabel>
                 <Label>Password</Label>
-                <Input secureTextEntry={true} keyboardType='visible-password' onChangeText={(text)=>{pass=text}} />
+                <Input secureTextEntry={true} onChangeText={(text)=>{pass=text}} />
               </Item>
             </Form>
             <Body />
