@@ -10,9 +10,10 @@ export default class extras extends Component {
         } 
     }
 
-  async getExtras(){
-    const token = await SecureStorage.getItem('token');
-  }
+  // async getExtras(){
+  //   const token = await SecureStorage.getItem('token');
+  //   fetch(url + '{{url}}/api/users/dues',Header
+  // }
   render() {
       this.extras = this.state.data.map((data, key) =>
       <ListItem last>
