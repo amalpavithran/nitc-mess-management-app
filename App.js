@@ -18,7 +18,7 @@ class Signin extends Component {
     super(props);
     this.state = {
       isReady: false,
-      email: "reach2ansandu@gmail.com",
+      email: "reach2anandu@gmail.com",
       pass: 'password',
       error: null,
     };
@@ -78,6 +78,9 @@ class Signin extends Component {
                         const token = res.token;
                         console.log(token);
                         await SecureStore.setItemAsync('token', token);
+                        await SecureStore.setItemAsync('name',res.user.name);
+                        await SecureStore.setItemAsync('roll',res.user.rollNumber);
+                        this.props.navigation.navigate('extras')
                       }else{
                         this.state.error = res.message
                       }
