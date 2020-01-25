@@ -1,31 +1,35 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import { View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { StyleSheet, ScrollView, AppRegistry} from 'react-native'
+import { Container, Text, Button, Content, Header, Form, Item, Input, Label, Left, Body, Title, Right, Subtitle, Row } from 'native-base';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 
-class SignupScreen extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        isReady: false,
-      };
+export default class SignupScreen extends Component { 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false,
+    };
+  }
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      ...Ionicons.font,
+    });
+    this.setState({ isReady: true });
+  }
+
+  render() {
+    if (!this.state.isReady) {
+      return <AppLoading />;
     }
-  
-    async componentDidMount() {
-      await Font.loadAsync({
-        Roboto: require('native-base/Fonts/Roboto.ttf'),
-        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-        ...Ionicons.font,
-      });
-      this.setState({ isReady: true });
-    }
-  
-    render() {
-      if (!this.state.isReady) {
-        return <AppLoading />;
-      }
-      
-      const {navigate} = this.props.navigation;
-  
-      return (
-        <Container>
+    return (
+      <Container>
           <Header>
             <Left />
             <Body>
@@ -45,15 +49,15 @@ class SignupScreen extends Component {
                 <Input />
               </Item>
               <Item floatingLabel>
-                  <Label></Label>
+                  <Label>Email</Label>
               </Item>
             </Form>
             <Body />
-            <Button rounded onPress={() =>navigate('Signin')} >
+            <Button rounded onPress={() =>this.props.navigation.navigate('Home')} >
               <Text>Sign Up</Text>
             </Button>
           </Content>
         </Container>
-      );
-    }
+    )
   }
+};
