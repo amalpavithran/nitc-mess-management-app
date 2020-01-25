@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
+import SecureStorage from 'react-native-secure-storage'
 import { Container, Header, Content, List, ListItem, Text, Separator, Right } from 'native-base';
 
 export default class extras extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: [
-                {value: 35, Message: 'jumper', 'name' : "Hemanth", key : 1},
-                {value: 42, Message: 'shirt', 'name' : "Hemanth", key : 2},
-                {value: 56, Message: 'pants', 'name' : "Hemanth", key: 3},
-                {value: 71, Message: 'socks', 'name' : "Hemanth", key: 4},
-                {value: 72, Message: 'socks', 'name' : "Hemanth", key: 5},
-            ]
+            data: null
         } 
     }
+
+  async getExtras(){
+    const token = await SecureStorage.getItem('token');
+  }
   render() {
       this.extras = this.state.data.map((data, key) =>
       <ListItem last>

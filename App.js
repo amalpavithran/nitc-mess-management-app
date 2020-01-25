@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { StyleSheet, ScrollView, AppRegistry} from 'react-native'
+import { StyleSheet, ScrollView, AppRegistry } from 'react-native'
 import { Container, Text, Button, Content, Header, Form, Item, Input, Label, Left, Body, Title, Right, Subtitle, Row } from 'native-base';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import SignupScreen from './Signup';
 import extras from './extras';
+import * as SecureStore from 'expo-secure-store';
 
 var url = "http://nitc-mess.anandu.net"
 
@@ -17,8 +18,9 @@ class Signin extends Component {
     super(props);
     this.state = {
       isReady: false,
-      email: null,
-      pass: null
+      email: "reach2ansandu@gmail.com",
+      pass: 'password',
+      error: null,
     };
   }
   async componentDidMount() {
@@ -35,7 +37,7 @@ class Signin extends Component {
       return <AppLoading />;
     }
     return (
-      <ScrollView style={{ flexGrow: 1 }}>
+      <ScrollView>
         <Header>
           <Left />
           <Body>
@@ -56,9 +58,7 @@ class Signin extends Component {
               </Item>
               <Button style={styles.button}
                 onPress={() => {
-                  this.props.navigation.navigate('extras');
-                  console.log(this.state.email);
-                  console.log(this.state.pass);
+                  let resCode = null;
                   fetch(url + '/api/auth/signin', {
                     method: 'POST',
                     headers: {
@@ -68,20 +68,31 @@ class Signin extends Component {
                       'email': this.state.email,
                       "password": this.state.pass,
                     })
-                  }).then(data => data.json())
-                    .then((d) => {
-                      console.log(d)
+                  })
+                    .then(data => {
+                      resCode = data.status;
+                      return data.json();
+                    })
+                    .then(async res => {
+                      if (resCode === 200) {
+                        const token = res.token;
+                        console.log(token);
+                        await SecureStore.setItemAsync('token', token);
+                      }else{
+                        this.state.error = res.message
+                      }
                     })
                 }}>
                 <Text>Submit</Text>
               </Button>
               <Button style={styles.button}
-                onPress={() => {
+                onPress={async () => {
                   this.props.navigation.navigate('Signup')
                 }}>
                 <Text>Sign Up</Text>
               </Button>
             </Form>
+            <Text>{this.state.error}</Text>
             <Body />
           </Content>
         </Container>
@@ -90,15 +101,28 @@ class Signin extends Component {
 
   }
 }
+
 const AppNavigator = createStackNavigator({
   Home: {
     screen: Signin,
+    navigationOptions: {
+      title: 'Home',
+      headerShown: false
+    },
   },
   Signup: {
     screen: SignupScreen,
+    navigationOptions: {
+      title: 'Home',
+      headerShown: false
+    },
   },
   extras: {
-    screen: extras
+    screen: extras,
+    navigationOptions: {
+      title: 'Home',
+      headerShown: false
+    },
   }
 });
 
@@ -110,8 +134,6 @@ const styles = StyleSheet.create({
   form: {
     margin: 10,
     marginBottom: 20,
-    alignItems: "center",
-    flexDirection: "column"
   },
   button: {
     flexGrow: 1,
