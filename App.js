@@ -41,15 +41,18 @@ export default class App extends Component {
             <Form style={styles.form}>
               <Item floatingLabel>
                 <Label>Username</Label>
-                <Input />
+                <Input onChangeText={(text)=>{user=text}}/>
               </Item>
               <Item floatingLabel>
                 <Label>Password</Label>
-                <Input />
+                <Input secureTextEntry={true} keyboardType='visible-password' onChangeText={(text)=>{pass=text}} />
               </Item>
             </Form>
             <Body />
-            <Button style={styles.button} rounded>
+            <Button style={styles.button} rounded
+              onPress={()=>{
+
+              }}>
               <Text>Submit</Text>
             </Button>
           </Content>
@@ -58,7 +61,11 @@ export default class App extends Component {
     );
   }
 }
+var user
+var pass
+function login(){
 
+}
 const styles = StyleSheet.create({
   form: {
     margin: 10,
