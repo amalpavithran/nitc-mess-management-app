@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, TextInput} from 'react-native'
+import { StyleSheet, TextInput, ScrollView } from 'react-native'
 import { AppLoading } from 'expo';
 import { Container, Text, Button, Content, Header, Form, Item, Input, Label, Left, Body, Title, Right, Subtitle, Row } from 'native-base';
 import * as Font from 'expo-font';
@@ -28,7 +28,7 @@ export default class App extends Component {
     }
 
     return (
-      <Container style={{flexGrow:1}}>
+      <ScrollView style={{ flexGrow: 1 }}>
         <Header>
           <Left />
           <Body>
@@ -36,47 +36,47 @@ export default class App extends Component {
             {/* <Subtitle>Code.init()</Subtitle> */}
           </Body>
         </Header>
-        <Container style={{justifyContent:"center",alignItems:"center",flexDirection:'row',backgroundColor:'tomato'}}>
-          <Content>
+        <Container style={{ flexGrow: 1, alignItems: 'center', flexDirection: 'row', }}>
+          <Content style={{ marginTop: -100 }}>
             <Form style={styles.form}>
               <Item floatingLabel>
                 <Label>Username</Label>
-                <Input onChangeText={(text)=>{user=text}}/>
+                <Input onChangeText={(text) => { user = text }} />
               </Item>
               <Item floatingLabel>
                 <Label>Password</Label>
-                <Input secureTextEntry={true} onChangeText={(text)=>{pass=text}} />
+                <Input secureTextEntry={true} onChangeText={(text) => { pass = text }} />
               </Item>
+              <Button style={styles.button}
+                onPress={() => {
+
+                }}>
+                <Text>Submit</Text>
+              </Button>
             </Form>
             <Body />
-            <Button style={styles.button} rounded
-              onPress={()=>{
-
-              }}>
-              <Text>Submit</Text>
-            </Button>
           </Content>
         </Container>
-      </Container>
+      </ScrollView>
     );
   }
 }
 var user
 var pass
-function login(){
+function login() {
 
 }
 const styles = StyleSheet.create({
   form: {
     margin: 10,
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center"
-  },
-  textField: {
-    marginBottom: 10
+    marginBottom: 20,
+    alignItems: "center",
+    flexDirection:"column"
   },
   button: {
-    margin: 10,
+    flexGrow:1,
+    marginTop:30,
+    justifyContent: "center",
+    borderRadius: 7
   }
 });
