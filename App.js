@@ -18,10 +18,18 @@ class Signin extends Component {
     super(props);
     this.state = {
       isReady: false,
-      email: "reach2anandu@gmail.com",
-      pass: 'password',
+      email: null,
+      pass: null,
       error: null,
+      token: null,
     };
+    bind
+  }
+  async persistance(){
+    const token = await SecureStore.getItemAsync('token');
+    this.setState({
+      token
+    })
   }
   async componentDidMount() {
     await Font.loadAsync({
@@ -50,7 +58,7 @@ class Signin extends Component {
             <Form style={styles.form}>
               <Item floatingLabel>
                 <Label>Email</Label>
-                <Input onChangeText={(text) => { this.state.email = text }} />
+                <Input keyboardType='email-address'  onChangeText={(text) => { this.state.email = text }} />
               </Item>
               <Item floatingLabel>
                 <Label>Password</Label>

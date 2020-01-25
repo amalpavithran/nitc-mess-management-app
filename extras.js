@@ -11,6 +11,7 @@ export default class extras extends Component {
       data: [{'Message':'extra',"value":10,'date':"12-23-23",'token':1}]
     }
      this.fetchData = this.fetchData.bind(this)
+     this.fetchData();
   }
 
   async fetchData() {
@@ -28,7 +29,6 @@ export default class extras extends Component {
         })
   }
   render() {
-    this.fetchData();
     this.extras = this.state.data.map((data,key) =>
       <ListItem last key={key}>
         <Text>{data.message}</Text>
