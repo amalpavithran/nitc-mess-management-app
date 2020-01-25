@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Text, Separator, Right, Card, CardItem, Body } from 'native-base';
+import { Container, Header, Content, List, ListItem, Text, Separator, Right, Card, CardItem, Body, Left, Thumbnail } from 'native-base';
 
 export default class extras extends Component {
     constructor(props){
@@ -28,8 +28,18 @@ export default class extras extends Component {
 
     return (
       <Container>
-        <Header />
         <Content>
+          <Card style={{flex: 0}}>
+            <CardItem>
+              <Left>
+                <Thumbnail source={require('./assets/thumbnail.png')} />
+                <Body>
+                  <Text>Hemanth Kumar J</Text>
+                  <Text note>B181004CS</Text>
+                </Body>
+              </Left>
+            </CardItem>
+          </Card>
           {this.extras}
           </Content>
           <Content style = {{position: 'absolute', left: 0, right: 0, bottom: 0}}>
