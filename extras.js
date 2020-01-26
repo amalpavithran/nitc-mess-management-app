@@ -72,7 +72,9 @@ export default class Extras extends Component {
             </CardItem>
           </Card>
           {this.extras}
-        </Content>
+        </Content>        
+        <ListItem />
+        <ListItem />
         <Content style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
           <Card>
             <CardItem>
