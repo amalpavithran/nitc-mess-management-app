@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { persistance } from './App'
 import * as SecureStore from 'expo-secure-store';
 import { Container, Header, Content, List, ListItem, Text, Separator, Right, Card, CardItem, Left, Thumbnail, Body, Title, Icon, Button } from 'native-base';
-import Signin from './App'
 export default class Extras extends Component {
   constructor(props) {
     super(props);
