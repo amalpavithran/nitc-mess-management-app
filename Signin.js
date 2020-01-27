@@ -76,7 +76,7 @@ export default class Signin extends Component {
                     <Container style={{alignItems: 'center', flexDirection: 'row'}}>
                         <Content>
                             <View style={{flexGrow:1,alignItems:'center'}}>
-                                <Image source={require('./assets/icon.png')} style={{ width: 100, height: 110}} />
+                                <Image source={require('./assets/icon.png')} style={{ width: 100, height: 115}} />
                             </View>
                             <Form style={styles.form}>
                                 <Item floatingLabel>
