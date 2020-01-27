@@ -6,6 +6,7 @@ import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, ScrollView, AppRegistry } from 'react-native'
 import * as SecureStore from 'expo-secure-store';
+import Extras from './extras';
 
 export default class Signin extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ export default class Signin extends Component {
         this.persistance = this.persistance.bind(this)
         this.loginError = this.loginError.bind(this)
         this.setLoading = this.setLoading.bind(this)
+        this.persistance();
     }
 
     setLoading() {
@@ -29,7 +31,7 @@ export default class Signin extends Component {
         })
     }
     async persistance() {
-        const token = SecureStore.getItemAsync('token');
+        const token = await SecureStore.getItemAsync('token');
         console.log(token);
         if (token != null) {
             fetch("http://nitc-mess.anandu.net/api/users/dues", { "credentials": "omit", "headers": { "accept": "*/*", "Authorization": `Bearer ${token}` }, "method": "GET" })
@@ -76,7 +78,7 @@ export default class Signin extends Component {
                     <Container style={{alignItems: 'center', flexDirection: 'row'}}>
                         <Content>
                             <View style={{flexGrow:1,alignItems:'center'}}>
-                                <Image source={require('./assets/icon.png')} style={{ width: 100, height: 115}} />
+                                <Image source={require('./assets/icon1.png')} style={{ width: 100, height: 100}} />
                             </View>
                             <Form style={styles.form}>
                                 <Item floatingLabel>
