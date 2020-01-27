@@ -30,6 +30,9 @@
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#334393"
+    },
+    "android": {
+      "package": "com.teamhac.nitcmess"
     }
   }
 }
