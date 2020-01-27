@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Container, Text, Button, Content, Header, Form, Item, Input, Label, Left, Body, Title, Spinner} from 'native-base';
+import { Image } from 'react-native';
+import { Container, Text, Button, Content, Header, Form, Item, Input, Label, Left, Body, Title, Spinner, View } from 'native-base';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,7 +23,7 @@ export default class Signin extends Component {
         this.setLoading = this.setLoading.bind(this)
     }
 
-    setLoading(){
+    setLoading() {
         this.setState({
             loading: 'flex'
         })
@@ -73,8 +73,11 @@ export default class Signin extends Component {
                             {/* <Subtitle>Code.init()</Subtitle> */}
                         </Body>
                     </Header>
-                    <Container style={{ flexGrow: 1, alignItems: 'center', flexDirection: 'row', }}>
-                        <Content style={{ marginTop: -100 }}>
+                    <Container style={{alignItems: 'center', flexDirection: 'row'}}>
+                        <Content>
+                            <View style={{flexGrow:1,alignItems:'center'}}>
+                                <Image source={require('./assets/icon.png')} style={{ width: 100, height: 110}} />
+                            </View>
                             <Form style={styles.form}>
                                 <Item floatingLabel>
                                     <Label>Email</Label>
@@ -117,7 +120,7 @@ export default class Signin extends Component {
                                                     console.log(res.errors.message)
                                                 }
                                                 this.setState({
-                                                    loading:'none'
+                                                    loading: 'none'
                                                 })
                                             })
                                     }}>
@@ -130,7 +133,7 @@ export default class Signin extends Component {
                                     <Text>Sign Up</Text>
                                 </Button>
                             </Form>
-                            <Spinner style={{display:this.state.loading}}/>
+                            <Spinner style={{ display: this.state.loading }} />
                             <Text style={styles.error}>{this.state.error}</Text>
                             <Body />
                         </Content>
