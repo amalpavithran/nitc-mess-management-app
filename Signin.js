@@ -24,7 +24,8 @@ export default class Signin extends Component {
         this.setLoading = this.setLoading.bind(this)
         this.persistance();
     }
-
+    componentWillUnmount(){
+    }
     setLoading() {
         this.setState({
             loading: 'flex'
@@ -116,7 +117,9 @@ export default class Signin extends Component {
                                                     await SecureStore.setItemAsync('token', token);
                                                     await SecureStore.setItemAsync('name', res.user.name);
                                                     await SecureStore.setItemAsync('roll', res.user.rollNumber);
-                                                    this.props.navigation.navigate('Extras');
+                                                    this.setState({
+                                                        validSession:true
+                                                    })
                                                 } else {
                                                     this.loginError(res.errors.message);
                                                     console.log(res.errors.message)

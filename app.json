@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "nitc-mess-management-app",
+    "name": "NITC MESS",
     "slug": "nitc-mess-management-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -9,7 +9,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.1",
+    "version": "2.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon1.png",
     "splash": {
